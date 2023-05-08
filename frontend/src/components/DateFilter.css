@@ -1,0 +1,97 @@
+.dateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  margin-bottom: 16px;
+}
+.choseDateContainer label {
+  white-space: nowrap;
+}
+
+.flexibleContainer label {
+  white-space: nowrap;
+}
+
+.radioContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10vw;
+  padding: 8px;
+}
+
+.dateInput {
+  border: none;
+  width: 50%;
+  align-self: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 40px;
+  padding: 8px 8px;
+  margin: 8px 16px;
+  margin-top: 16px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+#dateFlexibleClicked {
+  background: #151d48;
+  box-shadow: none;
+  font-weight: semi-bold;
+  transition: all 0.3s ease-in-out;
+  color: white;
+}
+
+#dateDateClicked {
+  background: #151d48;
+  box-shadow: none;
+  font-weight: semi-bold;
+  transition: all 0.3s ease-in-out;
+  color: white;
+}
+
+/*remove radio button from .choseDateContainer input*/
+.choseDateContainer input[type="radio"] {
+  display: none;
+}
+.choseDateContainer label {
+  width: 7rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 40px;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+.choseDateContainer label:hover {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transform: translateY(1px);
+}
+
+.flexibleContainer input[type="radio"] {
+  display: none;
+}
+
+.flexibleContainer label {
+  width: 7rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 40px;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+.flexibleContainer label:hover {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transform: translateY(1px);
+}
+
+@media (min-width: 768px) {
+  .dateInput {
+    width: 40%;
+    margin: 8px;
+  }
+
+  .radioContainer {
+    gap: 3vw;
+  }
+}

@@ -1,0 +1,163 @@
+/*NavBar style definition*/
+
+nav {
+  /*width is 100% of the screen*/
+  width: 100%;
+  background-color: var(--main-color);
+  /*navbar is sticky on top of the screen*/
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/*don't display website tile in mobile version*/
+nav ul li h1 {
+  display: none;
+  margin: 0;
+}
+
+/* define style for nav ul*/
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  color: white;
+  margin: 0;
+}
+
+/*define the style for the nav button*/
+nav ul li button {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: left;
+  align-items: center;
+  gap: 8px;
+  /* main appearance */
+  margin: 8px;
+  min-height: 35px;
+  background: rgba(249, 249, 249, 0.9);
+  border-radius: 50px;
+}
+
+/*define the style for the nav button when hover*/
+nav ul li button:hover {
+  background-color: rgba(249, 249, 249, 0.8);
+  cursor: pointer;
+}
+
+/*define the style of the logo img*/
+nav ul li img {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 8px;
+}
+
+/*defining behaviour of elements inside button*/
+#filter_icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 8px;
+}
+
+/*defining filters behaviour and decoration*/
+.header_filters {
+  /*behaviour*/
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-right: 8px;
+}
+
+.header_main_filters {
+  /*behaviour*/
+  display: flex;
+  flex-direction: row;
+  /*align items on bottom*/
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: 4px;
+  font-weight: 450;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+#navbar-date {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: #666666;
+}
+
+.header_tags_filters {
+  /*behaviour*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  /*decoration*/
+  font-weight: 300;
+  font-size: 0.6rem;
+  /*color is secondary color variable*/
+  color: var(--secondary-color);
+  margin-bottom: 4px;
+}
+
+/*no wrap for filter text*/
+nav ul li button p {
+  white-space: nowrap;
+  margin: 0;
+}
+
+/*media queries for screen over 768px*/
+@media (min-width: 768px) {
+  /*display website title*/
+  nav ul li h1 {
+    display: block;
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: white;
+  }
+
+  /*display logo and websitetitle in flex row*/
+  nav ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  nav ul li button {
+    min-width: 25vw;
+    width: fit-content;
+  }
+
+  /*define the size of the logo img*/
+  #logo {
+    width: 3.8rem;
+    height: 3.8rem;
+    margin: 8px;
+    margin-right: 16px;
+  }
+  /*header icon smaller*/
+  #filter_icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 16px;
+  }
+
+  .header_main_filters {
+    font-size: 1rem;
+  }
+  #navbar-date {
+    font-weight: initial;
+    font-size: 0.9rem;
+  }
+
+  .header_tags_filters {
+    font-size: 0.8rem;
+  }
+}

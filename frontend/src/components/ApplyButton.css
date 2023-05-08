@@ -1,0 +1,32 @@
+/*mobile first design*/
+
+.apply-button {
+  background: #151d48;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 40px;
+  padding: 8px 24px;
+  margin: 16px auto;
+  font-size: 0.85rem;
+  font-weight: bold;
+  /*position fixed 32 px above the bottom of the screen*/
+  position: fixed;
+  bottom: 32px;
+}
+
+.apply-button:hover {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+/*media queries for screen over 768px*/
+@media screen and (min-width: 768px) {
+  .apply-button {
+    font-size: 1rem;
+    position: initial;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    padding: 8px 24px;
+    margin: 16px auto;
+    font-weight: initial;
+  }
+}

@@ -1,0 +1,143 @@
+.filtersMenuBackground {
+  display: none;
+}
+
+.filtersMenu {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 90vw;
+  border-radius: 10px;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  margin-top: 8px;
+  margin-bottom: 96px;
+  z-index: 8;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.crossContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.closingCross {
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+}
+
+.culture-sport-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.place-event-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filtersMenu h3 {
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0 auto 8px auto;
+}
+
+hr {
+  width: 70vw;
+}
+.main-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/*don't display last h3*/
+#additional-filters {
+  display: none;
+}
+/*media queries over 768px*/
+@media (min-width: 768px) {
+  .main-filters {
+    display: flex;
+    flex-direction: row;
+    /*wrap if needed*/
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 16px 24px 16px;
+
+    /*horizontal gap between filters*/
+    gap: 32px;
+  }
+
+  .filtersMenu {
+    width: 80vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  hr {
+    display: none;
+  }
+
+  .hr-desktop-displayed {
+    display: initial;
+    width: 0px;
+    height: 50px;
+  }
+
+  /* don't display last hr */
+  .main-filters hr:last-child {
+    display: none;
+  }
+
+  /*filters menu background fits all the page*/
+  .filtersMenuBackground {
+    display: initial;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(22, 22, 22, 0.6);
+    z-index: 11;
+    font-size: 0;
+  }
+
+  .filtersMenu {
+    z-index: 12;
+  }
+
+  #additional-filters {
+    display: initial;
+    margin-bottom: 24px;
+  }
+
+  .filtersMenu h3 {
+    font-weight: 300;
+    margin: 0 auto 8px auto;
+  }
+
+  .date-filter {
+    margin: 0;
+    margin-top: 8px;
+  }
+}
