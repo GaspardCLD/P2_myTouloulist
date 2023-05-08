@@ -1,7 +1,6 @@
-## Concept
+## myTouloulist
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+Mytouloulist is a website created as a student project with the aim of displaying cultural and sports events and venues in Toulouse, allowing users to filter the results. It was developed using REACT JS and styled with native CSS. We made minimal use of existing packages. We are proud to present our creation.
 
 ## Setup & Use
 
