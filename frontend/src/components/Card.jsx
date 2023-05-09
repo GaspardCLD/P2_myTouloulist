@@ -16,6 +16,8 @@ function Card({
   email,
   nature,
   access,
+  coordinates,
+  website,
 }) {
   const availableImages = [
     "Danse",
@@ -42,6 +44,7 @@ function Card({
     "Littérature",
     "Pop musique (rock...)",
     "Musique contemporaine",
+    "Contes",
   ];
 
   // create an imageDisplayed const that returns the first value of "tags" that is included in availableImages if there is one, null otherwise
@@ -85,6 +88,70 @@ function Card({
       </div>
     );
   }
+
+  if (api === "stadiums") {
+    return (
+      <div className="stadium-card">
+        <div className="stadium-card-header">
+          <img src="/assets/stadium.png" alt="stadium" />
+          <div className="stadium-card-presentation">
+            <p id="stadium-title">{name}</p>
+            <div className="cards-tags">
+              {tags.map((el) => (
+                <span className="cards-tag" key={el}>
+                  {el}
+                </span>
+              ))}
+            </div>
+            <p>{longDescription}</p>
+          </div>
+        </div>
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${coordinates[0]},${coordinates[1]}`}
+          target="_blank"
+          rel="noreferrer"
+          id="access-stadium"
+        >
+          <p>Accès</p>
+        </a>
+      </div>
+    );
+  }
+
+  if (api === "cinemas") {
+    return (
+      <div className="cinemas-card">
+        <div className="cinemas-card-header">
+          <img src="/assets/cinema.png" alt="cinemas" />
+          <div className="cinemas-card-presentation">
+            <p id="cinemas-title">{name}</p>
+            <div className="cards-tags">
+              {tags.map((el) => (
+                <span className="cards-tag" key={el}>
+                  {el}
+                </span>
+              ))}
+            </div>
+            {/* <p id="cinemas-address">{address}</p>, adress is transformed with only first letter of each word as capital letter */}
+            <p id="cinemas-address">
+              {address
+                .toLowerCase()
+                .split(" ")
+                .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+                .join(" ")}
+            </p>
+            {/* if it does exist, display website */}
+            {website && (
+              <a href={`${website}`} target="_blank" rel="noreferrer">
+                <p id="cinemas-website">Site web</p>
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return null;
 }
 
@@ -101,6 +168,8 @@ Card.propTypes = {
   email: PropTypes.string,
   nature: PropTypes.string,
   access: PropTypes.string,
+  coordinates: PropTypes.arrayOf(PropTypes.number),
+  website: PropTypes.string,
 };
 
 export default Card;
