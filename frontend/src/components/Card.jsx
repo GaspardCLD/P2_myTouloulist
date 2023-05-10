@@ -18,6 +18,8 @@ function Card({
   access,
   coordinates,
   website,
+  startingDate,
+  endingDate,
 }) {
   const availableImages = [
     "Danse",
@@ -60,10 +62,40 @@ function Card({
         .replace(/-/g, "")
     : null;
 
+  const handleOpenNavigation = async () => {
+    const googleMapsLink = `https://maps.google.com/maps?q=${coordinates[0]},${coordinates[1]}`;
+    const appleMapsLink = `http://maps.apple.com/?q=${coordinates[0]},${coordinates[1]}`;
+    const wazeLink = `https://www.waze.com/ul?ll=${coordinates[0]},${coordinates[1]}&navigate=yes`;
+
+    window.open(googleMapsLink); // Ouvre Google Maps
+    window.open(appleMapsLink); // Ouvre Apple Maps
+    window.open(wazeLink); // Ouvre Waze
+  };
+
+  // turn dates into a more readable format from 2023-05-13 into 13/05/2023
+  const startingDateModified = startingDate
+    ? `${startingDate.slice(8, 10)}/${startingDate.slice(
+        5,
+        7
+      )}/${startingDate.slice(0, 4)}`
+    : null;
+  const endingDateModified = endingDate
+    ? `${endingDate.slice(8, 10)}/${endingDate.slice(5, 7)}/${endingDate.slice(
+        0,
+        4
+      )}`
+    : null;
+
+  // if starting date and ending date are not the same, we display`Du ${startingDateModified} au ${endingDateModified}`, else, we display 'Le ${startingDateModified}'
+  const dateDisplayed =
+    startingDateModified !== endingDateModified
+      ? `Du ${startingDateModified} au ${endingDateModified}`
+      : `Le ${startingDateModified}`;
+
   if (api === "events") {
     return (
-      <div className="event-card">
-        <div className="event-card-header">
+      <div className="card">
+        <div className="card-header">
           <img
             src={
               imageDisplayed
@@ -74,7 +106,7 @@ function Card({
           />
 
           <div id="event-card-presentation">
-            <p id="event-title">{name}</p>
+            <p className="card-title">{name}</p>
             <div className="cards-tags">
               {tags.map((el) => (
                 <span className="cards-tag" key={el}>
@@ -83,6 +115,7 @@ function Card({
               ))}
             </div>
             <p id="event-short-description">{shortDescription}</p>
+            <p id="card-dates">{dateDisplayed} </p>
           </div>
         </div>
       </div>
@@ -90,12 +123,26 @@ function Card({
   }
 
   if (api === "stadiums") {
+    // stadium description has only a capital letter at beginning of the string, the rest is lower case, except "XV" and "XIII"
+    const stadiumDescription = longDescription
+      ? longDescription
+          .toLowerCase()
+          .split(" ")
+          .map((word) => {
+            if (word === "xv" || word === "xiii") {
+              return word.toUpperCase();
+            }
+            return word.charAt(0).toUpperCase() + word.substring(1);
+          })
+          .join(" ")
+      : null;
+
     return (
-      <div className="stadium-card">
-        <div className="stadium-card-header">
+      <div className="card">
+        <div className="card-header">
           <img src="/assets/stadium.png" alt="stadium" />
           <div className="stadium-card-presentation">
-            <p id="stadium-title">{name}</p>
+            <p className="card-title">{name}</p>
             <div className="cards-tags">
               {tags.map((el) => (
                 <span className="cards-tag" key={el}>
@@ -103,28 +150,27 @@ function Card({
                 </span>
               ))}
             </div>
-            <p>{longDescription}</p>
+            <p id="stadium-description">{stadiumDescription}</p>
           </div>
         </div>
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${coordinates[0]},${coordinates[1]}`}
-          target="_blank"
-          rel="noreferrer"
-          id="access-stadium"
+        <button
+          className="access-link"
+          onClick={handleOpenNavigation}
+          type="button"
         >
           <p>Accès</p>
-        </a>
+        </button>
       </div>
     );
   }
 
   if (api === "cinemas") {
     return (
-      <div className="cinemas-card">
-        <div className="cinemas-card-header">
+      <div className="card">
+        <div className="card-header">
           <img src="/assets/cinema.png" alt="cinemas" />
           <div className="cinemas-card-presentation">
-            <p id="cinemas-title">{name}</p>
+            <p className="card-title">{name}</p>
             <div className="cards-tags">
               {tags.map((el) => (
                 <span className="cards-tag" key={el}>
@@ -141,12 +187,21 @@ function Card({
                 .join(" ")}
             </p>
             {/* if it does exist, display website */}
-            {website && (
-              <a href={`${website}`} target="_blank" rel="noreferrer">
-                <p id="cinemas-website">Site web</p>
-              </a>
-            )}
           </div>
+        </div>
+        <div id="cinemas-links">
+          <button
+            className="access-link"
+            onClick={handleOpenNavigation}
+            type="button"
+          >
+            <p>Accès</p>
+          </button>
+          {website && (
+            <a href={`${website}`} className="access-link">
+              <p id="cinemas-website">@</p>
+            </a>
+          )}
         </div>
       </div>
     );
@@ -170,6 +225,8 @@ Card.propTypes = {
   access: PropTypes.string,
   coordinates: PropTypes.arrayOf(PropTypes.number),
   website: PropTypes.string,
+  startingDate: PropTypes.string,
+  endingDate: PropTypes.string,
 };
 
 export default Card;

@@ -1,8 +1,6 @@
-/* mobile style*/
+/*common to all cards, no matter their APIs*/
 
-/*event-card*/
-
-.event-card {
+.card {
   display: flex;
   flex-direction: row;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
@@ -13,17 +11,27 @@
   padding: 8px 16px;
 }
 
-.event-card-header {
+.card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+}
+
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.8rem;
+  font-weight: 550;
+  margin-bottom: 4px;
+}
+
+.card-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 16px;
-}
-
-.event-card img {
-  width: 90px;
-  height: 90px;
-  border-radius: 10px;
 }
 
 .cards-tags {
@@ -37,33 +45,74 @@
   flex-wrap: wrap;
 }
 
-/* display only two first spans in cards-tags
-.cards-tags span:nth-child(n + 3) {
-  display: none;
-} */
-
 .cards-tag {
   font-size: 0.5rem;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   text-align: center;
   padding: 2px 4px;
-  /*no wrap*/
   white-space: nowrap;
 }
 
-#event-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.8rem;
-  font-weight: 550;
-  margin-bottom: 4px;
+.access-link {
+  text-decoration: none;
+  color: white;
+  background-color: #151d48;
+  font-size: 0.75rem;
+  margin: auto 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  height: fit-content;
+  padding: 0 px;
 }
 
+.access-link p {
+  margin: 4px 6px;
+}
+
+#card-dates {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/*media queries over 768px*/
+
+@media (min-width: 768px) {
+  .card {
+    width: 25%;
+    height: 220px;
+    margin: 16px;
+  }
+
+  .card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .cards-tags {
+    margin-left: auto;
+    margin-top: 0px;
+  }
+
+  .cards-tag {
+    font-size: 0.75rem;
+  }
+
+  .access-link {
+    font-size: 0.75rem;
+    margin: auto 4px;
+  }
+}
+
+/*event-card*/
+
+/*mobile*/
+
 #event-short-description {
-  /*maximum 3 lines*/
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -71,43 +120,24 @@
   font-size: 0.75rem;
 }
 
+/*media queries over 768px*/
+
+@media (min-width: 768px) {
+  #event-short-description {
+    font-size: 0.9rem;
+  }
+}
+
 /*stadium card*/
-.stadium-card {
+
+/*mobile*/
+
+.stadium-card-presentation {
   display: flex;
-  flex-direction: row;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  width: 90vw;
-  height: 120px;
-  margin: 8px auto;
-  padding: 8px 16px;
-}
-
-.stadium-card-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-}
-
-.stadium-card img {
-  width: 90px;
-  height: 90px;
-  border-radius: 10px;
-}
-
-#stadium-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.8rem;
-  font-weight: 550;
-  margin-bottom: 4px;
+  flex-direction: column;
 }
 
 #stadium-description {
-  /*maximum 3 lines*/
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -116,59 +146,33 @@
   margin-bottom: 0;
 }
 
-#acces-stadium {
-  /*no decoration for the link*/
-  text-decoration: none;
-  font-size: 0.5rem;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  background-color: #151d48;
-  color: white;
-  border-radius: 10px;
-  text-align: center;
-  padding: 2px 4px;
-  /*no wrap*/
-  white-space: nowrap;
-  width: fit-content;
-  /*position fixed bottom right of its container*/
-  position: absolute;
-}
-
 /*cinemas card*/
-.cinemas-card {
-  display: flex;
-  flex-direction: row;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  width: 90vw;
-  height: 120px;
-  margin: 8px auto;
-  padding: 8px 16px;
-}
 
-.cinemas-card-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-}
+/*mobile*/
 
-.cinemas-card img {
-  width: 90px;
-  height: 90px;
-  border-radius: 10px;
-}
-
-#cinemas-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.8rem;
-  font-weight: 550;
-  margin-bottom: 4px;
+#cinemas-website {
+  text-align: center;
 }
 
 #cinemas-address {
   font-size: 0.75rem;
   margin-bottom: 0;
+}
+
+#cinemas-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*media queries over 768px*/
+
+@media (min-width: 768px) {
+  #cinemas-links {
+    justify-content: center;
+  }
+
+  .access-link {
+    margin: 8px;
+  }
 }
