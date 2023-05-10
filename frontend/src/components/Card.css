@@ -9,7 +9,7 @@
   width: 90vw;
   min-height: 120px;
   margin: 8px auto;
-  padding: 8px 16px;
+  padding: 16px 16px;
 }
 
 .card img {
@@ -32,7 +32,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
+  width: 100%;
 }
 
 .cards-tags {
@@ -81,7 +83,7 @@
 
 @media (min-width: 768px) {
   .card {
-    width: 25%;
+    width: 350px;
     height: 220px;
     margin: 16px;
   }
@@ -96,7 +98,6 @@
   }
 
   .cards-tags {
-    margin-left: auto;
     margin-top: 0px;
   }
 
@@ -114,9 +115,10 @@
 
 /*mobile*/
 
-.event-card-presentation {
+#event-card-presentation {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 #event-short-description {
@@ -124,13 +126,29 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
 
 .events-date-discover {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+#discover-link {
+  text-decoration: none;
+  color: white;
+  background-color: #151d48;
+  font-size: 0.7rem;
+  margin: auto 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  height: fit-content;
+  padding: 0 px;
+}
+
+#discover-link p {
+  margin: 4px 6px;
 }
 
 /*media queries over 768px*/
@@ -150,6 +168,15 @@
   flex-direction: column;
 }
 
+.stadium-card-presentation-and-access {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 16px;
+}
+
 #stadium-description {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -157,10 +184,6 @@
   overflow: hidden;
   font-size: 0.75rem;
   margin-bottom: 0;
-}
-
-#discover-link {
-  font-size: 0.7rem;
 }
 
 /*cinemas card*/
@@ -182,6 +205,14 @@
   justify-content: space-between;
   gap: 16px;
   margin-left: auto;
+}
+
+.cinemas-card-presentation-and-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 16px;
 }
 
 /*media queries over 768px*/

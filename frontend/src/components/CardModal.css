@@ -1,0 +1,90 @@
+.cardModalContainer.hidden,
+.cardModalBackground.hidden {
+  display: none;
+}
+
+.cardModalContainer {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 80vw;
+  height: fit-content;
+  max-height: 70vh;
+  border-radius: 10px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  z-index: 5;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  overflow-y: scroll;
+}
+
+.cardModalBackground p {
+  display: none;
+}
+.cardModalBackground {
+  display: initial;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(22, 22, 22, 0.6);
+  z-index: 4;
+  font-size: 0;
+}
+
+.cardModalContainer .cards-tag {
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.cardModalContainer img {
+  width: 100px;
+  height: 100px;
+}
+
+.modal-card-title {
+  font-size: 1.2rem;
+  font-weight: 550;
+  margin-bottom: 4px;
+}
+
+#modal-card-dates {
+  font-size: 0.8 rem;
+  text-align: right;
+}
+
+#close-modal img {
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+}
+
+#close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+#modal-event-long-description {
+  text-align: justify;
+}
+
+#modal-name-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  margin-top: 16px;
+}
+
+#modal-name-date p {
+  margin: 0;
+}

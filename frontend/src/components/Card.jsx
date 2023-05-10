@@ -127,7 +127,6 @@ function Card({
               <div className="events-date-discover">
                 <p id="card-dates">{dateDisplayed} </p>
                 <button
-                  className="access-link"
                   id="discover-link"
                   onClick={handleOpenCardModal}
                   type="button"
@@ -140,6 +139,7 @@ function Card({
         </div>
 
         <CardModal
+          handleOpenNavigation={handleOpenNavigation}
           name={name}
           shortDescription={shortDescription}
           tags={tags}
@@ -157,7 +157,11 @@ function Card({
           startingDate={startingDate}
           endingDate={endingDate}
           isCardModalVisible={isCardModalVisible}
-          handleOpenCardModal={handleOpenCardModal}
+          setIsCardModalVisible={setIsCardModalVisible}
+          dateDisplayed={dateDisplayed}
+          availableImages={availableImages}
+          imageDisplayed={imageDisplayed}
+          imageDisplayedString={imageDisplayedString}
         />
       </>
     );
@@ -180,8 +184,10 @@ function Card({
 
     return (
       <div className="card">
-        <div className="card-header">
+        <div>
           <img src="/assets/stadium.png" alt="stadium" />
+        </div>
+        <div className="stadium-card-presentation-and-access">
           <div className="stadium-card-presentation">
             <p className="card-title">{name}</p>
             <div className="cards-tags">
@@ -193,14 +199,14 @@ function Card({
             </div>
             <p id="stadium-description">{stadiumDescription}</p>
           </div>
+          <button
+            className="access-link"
+            onClick={handleOpenNavigation}
+            type="button"
+          >
+            <p>Accès</p>
+          </button>
         </div>
-        <button
-          className="access-link"
-          onClick={handleOpenNavigation}
-          type="button"
-        >
-          <p>Accès</p>
-        </button>
       </div>
     );
   }
@@ -208,8 +214,10 @@ function Card({
   if (api === "cinemas") {
     return (
       <div className="card">
-        <div className="card-header">
+        <div className="">
           <img src="/assets/cinema.png" alt="cinemas" />
+        </div>
+        <div className="cinemas-card-presentation-and-links">
           <div className="cinemas-card-presentation">
             <p className="card-title">{name}</p>
             <div className="cards-tags">
@@ -229,20 +237,20 @@ function Card({
             </p>
             {/* if it does exist, display website */}
           </div>
-        </div>
-        <div id="cinemas-links">
-          <button
-            className="access-link"
-            onClick={handleOpenNavigation}
-            type="button"
-          >
-            <p>Accès</p>
-          </button>
-          {website && (
-            <a href={`${website}`} className="access-link">
-              <p id="cinemas-website">@</p>
-            </a>
-          )}
+          <div id="cinemas-links">
+            <button
+              className="access-link"
+              onClick={handleOpenNavigation}
+              type="button"
+            >
+              <p>Accès</p>
+            </button>
+            {website && (
+              <a href={`${website}`} className="access-link">
+                <p id="cinemas-website">@</p>
+              </a>
+            )}
+          </div>
         </div>
       </div>
     );
