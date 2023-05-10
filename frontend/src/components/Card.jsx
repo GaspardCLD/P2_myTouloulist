@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 import PropTypes from "prop-types";
+import { useState } from "react";
 import "./Card.css";
+import CardModal from "./CardModal";
 
 function Card({
   name,
@@ -62,6 +64,7 @@ function Card({
         .replace(/-/g, "")
     : null;
 
+  // handleOpenNavigation opens Google Maps, Apple Maps and Waze with the coordinates of the place
   const handleOpenNavigation = async () => {
     const googleMapsLink = `https://maps.google.com/maps?q=${coordinates[0]},${coordinates[1]}`;
     const appleMapsLink = `http://maps.apple.com/?q=${coordinates[0]},${coordinates[1]}`;
@@ -70,6 +73,11 @@ function Card({
     window.open(googleMapsLink); // Ouvre Google Maps
     window.open(appleMapsLink); // Ouvre Apple Maps
     window.open(wazeLink); // Ouvre Waze
+  };
+
+  const [isCardModalVisible, setIsCardModalVisible] = useState(false);
+  const handleOpenCardModal = () => {
+    setIsCardModalVisible(!isCardModalVisible);
   };
 
   // turn dates into a more readable format from 2023-05-13 into 13/05/2023
@@ -94,31 +102,64 @@ function Card({
 
   if (api === "events") {
     return (
-      <div className="card">
-        <div className="card-header">
-          <img
-            src={
-              imageDisplayed
-                ? `/assets/events_pictures/${imageDisplayedString}.png`
-                : "/assets/events.png"
-            }
-            alt="event"
-          />
+      <>
+        <div className="card">
+          <div className="card-header">
+            <img
+              src={
+                imageDisplayed
+                  ? `/assets/events_pictures/${imageDisplayedString}.png`
+                  : "/assets/events.png"
+              }
+              alt="event"
+            />
 
-          <div id="event-card-presentation">
-            <p className="card-title">{name}</p>
-            <div className="cards-tags">
-              {tags.map((el) => (
-                <span className="cards-tag" key={el}>
-                  {el}
-                </span>
-              ))}
+            <div id="event-card-presentation">
+              <p className="card-title">{name}</p>
+              <div className="cards-tags">
+                {tags.map((el) => (
+                  <span className="cards-tag" key={el}>
+                    {el}
+                  </span>
+                ))}
+              </div>
+              <p id="event-short-description">{shortDescription}</p>
+              <div className="events-date-discover">
+                <p id="card-dates">{dateDisplayed} </p>
+                <button
+                  className="access-link"
+                  id="discover-link"
+                  onClick={handleOpenCardModal}
+                  type="button"
+                >
+                  <p>Découvrir</p>
+                </button>
+              </div>
             </div>
-            <p id="event-short-description">{shortDescription}</p>
-            <p id="card-dates">{dateDisplayed} </p>
           </div>
         </div>
-      </div>
+
+        <CardModal
+          name={name}
+          shortDescription={shortDescription}
+          tags={tags}
+          address={address}
+          schedules={schedules}
+          api={api}
+          isFiltersMenuVisible={isFiltersMenuVisible}
+          longDescription={longDescription}
+          phone={phone}
+          email={email}
+          nature={nature}
+          access={access}
+          coordinates={coordinates}
+          website={website}
+          startingDate={startingDate}
+          endingDate={endingDate}
+          isCardModalVisible={isCardModalVisible}
+          handleOpenCardModal={handleOpenCardModal}
+        />
+      </>
     );
   }
 

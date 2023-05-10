@@ -3,10 +3,11 @@
 .card {
   display: flex;
   flex-direction: row;
+  align-items: center;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   width: 90vw;
-  height: 120px;
+  min-height: 120px;
   margin: 8px auto;
   padding: 8px 16px;
 }
@@ -58,12 +59,13 @@
   text-decoration: none;
   color: white;
   background-color: #151d48;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   margin: auto 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   height: fit-content;
   padding: 0 px;
+  margin-left: auto;
 }
 
 .access-link p {
@@ -112,12 +114,23 @@
 
 /*mobile*/
 
+.event-card-presentation {
+  display: flex;
+  flex-direction: column;
+}
+
 #event-short-description {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 0.75rem;
+}
+
+.events-date-discover {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /*media queries over 768px*/
@@ -146,6 +159,10 @@
   margin-bottom: 0;
 }
 
+#discover-link {
+  font-size: 0.7rem;
+}
+
 /*cinemas card*/
 
 /*mobile*/
@@ -163,6 +180,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 16px;
+  margin-left: auto;
 }
 
 /*media queries over 768px*/
