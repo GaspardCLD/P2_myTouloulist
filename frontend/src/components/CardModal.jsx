@@ -54,6 +54,7 @@ function CardModal({
         >
           <img src="/assets/close_icon.svg" alt="close" />
         </button>
+
         <img
           src={
             imageDisplayed
@@ -61,6 +62,7 @@ function CardModal({
               : "/assets/events.png"
           }
           alt="event"
+          id="modal-image"
         />
 
         <div id="event-card-presentation">

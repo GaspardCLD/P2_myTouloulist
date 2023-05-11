@@ -88,3 +88,9 @@
 #modal-name-date p {
   margin: 0;
 }
+
+#modal-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
