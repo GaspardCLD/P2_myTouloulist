@@ -171,4 +171,9 @@ input:checked + .slider:after {
     right: 3px;
     bottom: 1px;
   }
+
+  .listContainer {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }

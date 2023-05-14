@@ -184,6 +184,7 @@ function App() {
             nature: "culture",
             isPlace: true,
             id: el.recordid,
+            website: el.fields.eq_site_web,
             coordinates: el.fields.geo_point_2d,
             address: `${el.fields.numero ? el.fields.numero : ""} ${
               el.fields.lib_off
@@ -353,6 +354,8 @@ function App() {
                     endingDate={el.endingDate}
                     access={el.access}
                     nature={el.nature}
+                    coordinates={el.coordinates}
+                    website={el.website}
                   />
                 ))
               : null}
