@@ -5,7 +5,7 @@ import "./Error.css";
 function Error({ isError }) {
   return (
     <div className={`errorDisplay ${!isError ? "hidden" : ""}`}>
-      <p id="oups">Oups !</p>
+      <p id="oups">toul-Oups !</p>
       <p id="errorText">
         Le site data.toulouse-metropole.fr a eu trop de requêtes pour
         aujourd'hui... Revenez-demain !

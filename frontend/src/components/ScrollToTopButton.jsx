@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./ScrollToTopButton.css";
+import PropTypes from "prop-types";
 
-function ScrollToTopButton() {
-  const [isVisible, setIsVisible] = useState(false);
-
+function ScrollToTopButton({ setIsVisible, isVisible }) {
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 600) {
@@ -35,5 +34,10 @@ function ScrollToTopButton() {
     </button>
   );
 }
+
+ScrollToTopButton.propTypes = {
+  setIsVisible: PropTypes.func.isRequired,
+  isVisible: PropTypes.bool.isRequired,
+};
 
 export default ScrollToTopButton;

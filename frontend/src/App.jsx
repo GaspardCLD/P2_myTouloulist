@@ -57,6 +57,9 @@ function App() {
   // define behaviour of the toggle "map/list" button onclick
   const [mapToggleChecked, setMapToggleChecked] = useState(false);
 
+  // state relative to scrolltotupbutton visibility
+  const [isVisible, setIsVisible] = useState(false);
+
   const handleMapToggle = () => {
     setMapToggleChecked(!mapToggleChecked);
   };
@@ -95,15 +98,19 @@ function App() {
             isPlace: false,
             id: el.fields.identifiant,
             coordinates: el.fields.geo_point,
+            placeName: el.fields.lieu_nom,
             // defining the address result as 'XX rue de XXX, 31XXX SOMECITY"
             address: `${
               el.fields.lieu_adresse_2 ? `${el.fields.lieu_adresse_2},` : ""
             } ${el.fields.code_postal.toString()} ${el.fields.commune}`,
-            // defining the tags result as an array of tags, split by comma, from el.fields.theme_de_la_manifestation, only if it exists
-            tags:
-              el.fields.theme_de_la_manifestation &&
-              el.fields.theme_de_la_manifestation.split(","),
+            // defining the tags result as an array of tags, split by comma, no emptuy space at the beginning or end of each array from el.fields.theme_de_la_manifestation, only if it exists
+            tags: el.fields.theme_de_la_manifestation
+              ? el.fields.theme_de_la_manifestation
+                  .split(",")
+                  .map((item) => item.trim())
+              : [],
             schedules: el.fields.dates_affichage_horaires,
+            booking: el.fields.reservation_site_internet,
             phone: el.fields.reservation_telephone,
             email: el.fields.reservation_email,
             startingDate: el.fields.date_debut,
@@ -182,6 +189,7 @@ function App() {
             nature: "culture",
             isPlace: true,
             id: el.recordid,
+            website: el.fields.eq_site_web,
             coordinates: el.fields.geo_point_2d,
             address: `${el.fields.numero ? el.fields.numero : ""} ${
               el.fields.lib_off
@@ -351,6 +359,11 @@ function App() {
                     endingDate={el.endingDate}
                     access={el.access}
                     nature={el.nature}
+                    coordinates={el.coordinates}
+                    website={el.website}
+                    setIsVisible={setIsVisible}
+                    placeName={el.placeName}
+                    booking={el.booking}
                   />
                 ))
               : null}
@@ -359,7 +372,11 @@ function App() {
             <Map finalResult={finalResult} />
           ) : null}
         </main>
-        <ScrollToTopButton isFiltersMenuVisible={isFiltersMenuVisible} />
+        <ScrollToTopButton
+          isFiltersMenuVisible={isFiltersMenuVisible}
+          setIsVisible={setIsVisible}
+          isVisible={isVisible}
+        />
       </div>
       <Error isError={isError} />
       <Footer />
