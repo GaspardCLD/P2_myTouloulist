@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/require-default-props */
 import PropTypes from "prop-types";
@@ -22,6 +23,9 @@ function Card({
   website,
   startingDate,
   endingDate,
+  setIsVisible,
+  placeName,
+  booking,
 }) {
   const availableImages = [
     "Danse",
@@ -78,6 +82,7 @@ function Card({
   const [isCardModalVisible, setIsCardModalVisible] = useState(false);
   const handleOpenCardModal = () => {
     setIsCardModalVisible(!isCardModalVisible);
+    setIsVisible(false);
   };
 
   // turn dates into a more readable format from 2023-05-13 into 13/05/2023
@@ -162,6 +167,9 @@ function Card({
           availableImages={availableImages}
           imageDisplayed={imageDisplayed}
           imageDisplayedString={imageDisplayedString}
+          setIsVisible={setIsVisible}
+          placeName={placeName}
+          booking={booking}
         />
       </>
     );

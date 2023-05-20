@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 40px;
   right: 0px;
-  z-index: 12;
+  z-index: 3;
   /*background is transparent to show the background image*/
 
   color: var(--main-color);

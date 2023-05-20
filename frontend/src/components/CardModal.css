@@ -47,6 +47,7 @@
 .cardModalContainer img {
   width: 100px;
   height: 100px;
+  border-radius: 15px;
 }
 
 .modal-card-title {
@@ -83,14 +84,104 @@
   align-items: center;
   margin-bottom: 4px;
   margin-top: 16px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #modal-name-date p {
   margin: 0;
 }
 
+#card-modal-access-link,
+#modal-booking-link {
+  font-size: 0.9rem;
+}
+
 #modal-image {
-  position: fixed;
-  top: 0;
-  left: 0;
+  margin: auto;
+}
+
+.modal-buttons {
+  margin-left: auto;
+  margin-right: auto;
+  gap: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+#place-name {
+  font-weight: 500;
+}
+
+/*media queries over 768 px*/
+@media screen and (min-width: 768px) {
+  #modal-event-card-presentation {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+  #modal-image {
+    height: 150px;
+    width: auto;
+  }
+
+  #card-modal-access-link {
+    font-size: 1.1rem;
+  }
+
+  .cardModalContainer {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 70vw;
+    height: fit-content;
+    max-height: 80vh;
+  }
+
+  .cardModalContainer .cards-tag {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+
+  .modal-card-title {
+    font-size: 1.4rem;
+    font-weight: 550;
+    margin-bottom: 4px;
+  }
+
+  #modal-card-dates {
+    font-size: 1.1rem;
+    text-align: right;
+  }
+
+  #close-modal img {
+    width: 32px;
+    height: 32px;
+    margin: 16px;
+  }
+
+  #close-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  #modal-event-long-description {
+    text-align: justify;
+    font-size: 1.1rem;
+  }
+
+  #card-modal-access-link,
+  #modal-booking-link {
+    font-size: 1.1rem;
+  }
+
+  .modal-date-access {
+    font-size: 1.05rem;
+  }
+
+  #close-modal {
+    display: none;
+  }
 }
