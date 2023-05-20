@@ -79,6 +79,10 @@ function Card({
     window.open(wazeLink); // Ouvre Waze
   };
 
+  const handleOpenCinema = () => {
+    window.open(`https://${website}`);
+  };
+
   const [isCardModalVisible, setIsCardModalVisible] = useState(false);
   const handleOpenCardModal = () => {
     setIsCardModalVisible(!isCardModalVisible);
@@ -253,10 +257,16 @@ function Card({
             >
               <p>Accès</p>
             </button>
-            {website && (
-              <a href={`${website}`} className="access-link">
-                <p id="cinemas-website">@</p>
-              </a>
+            {website ? (
+              <button
+                className="access-link"
+                onClick={handleOpenCinema}
+                type="button"
+              >
+                <p>Lien</p>
+              </button>
+            ) : (
+              ""
             )}
           </div>
         </div>
