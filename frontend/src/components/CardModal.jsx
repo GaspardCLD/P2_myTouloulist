@@ -1,29 +1,23 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from "prop-types";
 import "./CardModal.css";
 
 function CardModal({
-  // availableImages,
   name,
-  // shortDescription,
   longDescription,
-  // address,
-  // schedules,
-  // isFiltersMenuVisible,
-  // phone,
-  // email,
-  // access,
-  // coordinates,
-  // website,
-  // startingDate,
-  // endingDate,
+  address,
+  schedules,
+  access,
   isCardModalVisible,
   setIsCardModalVisible,
-  // handleOpenNavigation,
   dateDisplayed,
   tags,
   imageDisplayed,
   imageDisplayedString,
+  handleOpenNavigation,
+  placeName,
+  booking,
 }) {
   // prevents window from scrolling when modal is open
 
@@ -42,6 +36,12 @@ function CardModal({
     });
   }
 
+  // handle booking button
+  const handleBooking = () => {
+    // opens url booking in a new window on click
+    window.open(`https://${booking}`);
+  };
+
   return (
     <>
       <div
@@ -55,29 +55,64 @@ function CardModal({
           <img src="/assets/close_icon.svg" alt="close" />
         </button>
 
-        <img
-          src={
-            imageDisplayed
-              ? `/assets/events_pictures/${imageDisplayedString}.png`
-              : "/assets/events.png"
-          }
-          alt="event"
-          id="modal-image"
-        />
+        <div id="modal-event-card-presentation">
+          <img
+            src={
+              imageDisplayed
+                ? `/assets/events_pictures/${imageDisplayedString}.png`
+                : "/assets/events.png"
+            }
+            alt="event"
+            id="modal-image"
+          />
+          <div className="modal-text">
+            <div>
+              <div id="modal-name-date">
+                <p className="modal-card-title">{name}</p>
+                <p id="modal-card-dates">{dateDisplayed} </p>
+              </div>
+              <div className="cards-tags">
+                {tags.map((el) => (
+                  <span className="cards-tag" key={el}>
+                    {el}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-        <div id="event-card-presentation">
-          <div id="modal-name-date">
-            <p className="modal-card-title">{name}</p>
-            <p id="modal-card-dates">{dateDisplayed} </p>
+            <p id="modal-event-long-description">{longDescription}</p>
+
+            <p className="modal-date-access">📅 {schedules}</p>
+            <p className="modal-date-access">
+              <span id="place-name">{placeName}</span>
+              <br />
+              {address}
+              <br />
+              {access ? <span>🚈 {access}</span> : ""}
+            </p>
           </div>
-          <div className="cards-tags">
-            {tags.map((el) => (
-              <span className="cards-tag" key={el}>
-                {el}
-              </span>
-            ))}
-          </div>
-          <p id="modal-event-long-description">{longDescription}</p>
+        </div>
+        <div className="modal-buttons">
+          <button
+            className="access-link"
+            id="card-modal-access-link"
+            onClick={handleOpenNavigation}
+            type="button"
+          >
+            <p>Accès</p>
+          </button>
+          {booking ? (
+            <button
+              className="access-link"
+              id="modal-booking-link"
+              onClick={handleBooking}
+              type="button"
+            >
+              <p>Réservations</p>
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <button
@@ -93,26 +128,13 @@ function CardModal({
 
 CardModal.propTypes = {
   name: PropTypes.string.isRequired,
-  // shortDescription: PropTypes.string.isRequired,
   longDescription: PropTypes.string.isRequired,
-  // address: PropTypes.string.isRequired,
-  // schedules: PropTypes.string.isRequired,
-  // isFiltersMenuVisible: PropTypes.bool.isRequired,
-  // phone: PropTypes.string.isRequired,
-  // email: PropTypes.string.isRequired,
-  // access: PropTypes.string.isRequired,
-  // coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-  // website: PropTypes.string.isRequired,
-  // startingDate: PropTypes.string.isRequired,
-  // endingDate: PropTypes.string.isRequired,
+
   isCardModalVisible: PropTypes.bool.isRequired,
   setIsCardModalVisible: PropTypes.func.isRequired,
-  // handleOpenNavigation: PropTypes.func.isRequired,
   dateDisplayed: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // availableImages: PropTypes.arrayOf(PropTypes.string).isRequired,
-  imageDisplayed: PropTypes.bool.isRequired,
-  imageDisplayedString: PropTypes.string.isRequired,
+  handleOpenNavigation: PropTypes.func.isRequired,
 };
 
 export default CardModal;

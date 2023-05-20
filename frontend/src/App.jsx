@@ -57,6 +57,9 @@ function App() {
   // define behaviour of the toggle "map/list" button onclick
   const [mapToggleChecked, setMapToggleChecked] = useState(false);
 
+  // state relative to scrolltotupbutton visibility
+  const [isVisible, setIsVisible] = useState(false);
+
   const handleMapToggle = () => {
     setMapToggleChecked(!mapToggleChecked);
   };
@@ -95,6 +98,7 @@ function App() {
             isPlace: false,
             id: el.fields.identifiant,
             coordinates: el.fields.geo_point,
+            placeName: el.fields.lieu_nom,
             // defining the address result as 'XX rue de XXX, 31XXX SOMECITY"
             address: `${
               el.fields.lieu_adresse_2 ? `${el.fields.lieu_adresse_2},` : ""
@@ -106,6 +110,7 @@ function App() {
                   .map((item) => item.trim())
               : [],
             schedules: el.fields.dates_affichage_horaires,
+            booking: el.fields.reservation_site_internet,
             phone: el.fields.reservation_telephone,
             email: el.fields.reservation_email,
             startingDate: el.fields.date_debut,
@@ -356,6 +361,9 @@ function App() {
                     nature={el.nature}
                     coordinates={el.coordinates}
                     website={el.website}
+                    setIsVisible={setIsVisible}
+                    placeName={el.placeName}
+                    booking={el.booking}
                   />
                 ))
               : null}
@@ -364,7 +372,11 @@ function App() {
             <Map finalResult={finalResult} />
           ) : null}
         </main>
-        <ScrollToTopButton isFiltersMenuVisible={isFiltersMenuVisible} />
+        <ScrollToTopButton
+          isFiltersMenuVisible={isFiltersMenuVisible}
+          setIsVisible={setIsVisible}
+          isVisible={isVisible}
+        />
       </div>
       <Error isError={isError} />
       <Footer />
